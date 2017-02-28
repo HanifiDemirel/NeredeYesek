@@ -298,6 +298,7 @@
     <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Home\GridViewPartialView.cshtml" />
+    <Content Include="Views\Home\Break.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

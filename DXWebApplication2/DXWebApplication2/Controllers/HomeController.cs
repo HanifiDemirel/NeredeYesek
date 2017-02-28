@@ -21,6 +21,11 @@ namespace DXWebApplication2.Controllers
             // DXCOMMENT: Pass a data model for GridView in the PartialView method's second parameter
             return PartialView("GridViewPartialView", NorthwindDataProvider.GetCustomers());
         }
+        
+        public ActionResult Break()
+        {
+            return View();
+        }
     
     }
 }
