@@ -1,0 +1,49 @@
+
+@Html.DevExpress().Button(settings =>
+{
+    settings.Text = "Restoranlar";
+    settings.Name = "Restoranlar";
+    settings.UseSubmitBehavior = true;
+    settings.GroupName = "Navigation";
+    settings.Height = 160;
+    settings.Width = 240;
+    settings.ControlStyle.CssClass = "buttonlar1";
+    settings.RouteValues = new { Controller = "Restorans" };
+}).GetHtml()
+
+@Html.DevExpress().Button(settings =>
+{
+    settings.Text = "Grup";
+    settings.Name = "Grup";
+    settings.UseSubmitBehavior = true;
+    settings.GroupName = "Navigation";
+    settings.Height = 160;
+    settings.Width = 240;
+    settings.ControlStyle.CssClass = "buttonlar2";
+    settings.RouteValues = new { Controller = "Uyelers" };
+}).GetHtml()
+
+<br />
+@Html.DevExpress().Button(settings =>
+{
+    settings.Text = "Puanlar";
+    settings.Name = "Puanlar";
+    settings.UseSubmitBehavior = true;
+    settings.GroupName = "Navigation";
+    settings.Height = 160;
+    settings.Width = 240;
+    settings.ControlStyle.CssClass = "buttonlar3";
+    settings.RouteValues = new { Controller = "Puanlar" };
+}).GetHtml()
+
+@Html.DevExpress().Button(settings =>
+{
+    settings.Text = "Ýstatistikler";
+    settings.Name = "Ýstatistikler";
+    settings.UseSubmitBehavior = true;
+    settings.GroupName = "Navigation";
+    settings.Height = 160;
+    settings.Width = 240;
+    settings.ControlStyle.CssClass = "buttonlar4";
+    settings.RouteValues = new { Controller = "Ýstatistikler" };
+}).GetHtml()

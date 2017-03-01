@@ -1,0 +1,55 @@
+﻿@model IEnumerable<DXWebApplication4.Models.Uyeler>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@Html.Action("GridView1Partial")
+
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Isim)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoyIsim)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grup.GrupAdi)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Isim)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoyIsim)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Grup.GrupAdi)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UID })
+        </td>
+    </tr>
+}
+
+</table>
