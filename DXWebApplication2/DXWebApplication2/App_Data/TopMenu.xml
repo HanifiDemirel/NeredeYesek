@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<items>
+  <item Text="Restoranlar" NavigateUrl="#" />
+  <item Text="Grup" NavigateUrl="#"  />
+  <item Text="Puan" NavigateUrl="#"  />
+  <item Text="İstatistikler" NavigateUrl="#"  />
+</items>
