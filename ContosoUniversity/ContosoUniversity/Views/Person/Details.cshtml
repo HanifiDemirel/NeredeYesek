@@ -42,6 +42,26 @@
             @Html.DisplayFor(model => model.Email)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.GivenPoints)
+        </dt>
+
+        <dd>
+            <table class= "table">
+                <tr>
+                    <th>Voted Restaurants</th>
+                    <th>Point</th>
+                </tr>
+                @foreach (var item in Model.GivenPoints)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.restaurant.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.GivenPoint) </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
     </dl>
 </div>
 <p>
