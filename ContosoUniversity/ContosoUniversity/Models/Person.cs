@@ -1,0 +1,13 @@
+﻿namespace ContosoUniversity.Models
+{
+    public class Person
+    {
+        public int ID { get; set; }
+        public int GroupID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        
+
+    }
+}

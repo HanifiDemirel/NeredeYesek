@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ContosoUniversity.Models.Statistic>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GroupID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RestaurantID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DaysToGo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DaysLeft)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.GroupID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RestaurantID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DaysToGo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DaysLeft)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
