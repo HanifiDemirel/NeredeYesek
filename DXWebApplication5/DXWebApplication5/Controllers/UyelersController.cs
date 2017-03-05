@@ -13,7 +13,7 @@ namespace DXWebApplication5.Controllers
 {
     public class UyelersController : Controller
     {
-        private NeredeYesekDBEntities2 db = new NeredeYesekDBEntities2();
+        private NeredeYesekDBEntities3 db = new NeredeYesekDBEntities3();
 
         // GET: Uyelers
         public ActionResult Index()
@@ -130,25 +130,22 @@ namespace DXWebApplication5.Controllers
             base.Dispose(disposing);
         }
 
-        DXWebApplication5.Models.NeredeYesekDBEntities2 db1 = new DXWebApplication5.Models.NeredeYesekDBEntities2();
-
         [ValidateInput(false)]
         public ActionResult GridViewPartial()
         {
-            var model = db1.Grups;
-            return PartialView("_GridViewPartial", model.ToList());
+            var model = new object[0];
+            return PartialView("_GridViewPartial", model);
         }
 
         [HttpPost, ValidateInput(false)]
         public ActionResult GridViewPartialAddNew(DXWebApplication5.Models.Grup item)
         {
-            var model = db1.Grups;
+            var model = new object[0];
             if (ModelState.IsValid)
             {
                 try
                 {
-                    model.Add(item);
-                    db1.SaveChanges();
+                    // Insert here a code to insert the new item in your model
                 }
                 catch (Exception e)
                 {
@@ -157,22 +154,17 @@ namespace DXWebApplication5.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_GridViewPartial", model.ToList());
+            return PartialView("_GridViewPartial", model);
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult GridViewPartialUpdate(DXWebApplication5.Models.Grup item)
         {
-            var model = db1.Grups;
+            var model = new object[0];
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var modelItem = model.FirstOrDefault(it => it.GID == item.GID);
-                    if (modelItem != null)
-                    {
-                        this.UpdateModel(modelItem);
-                        db1.SaveChanges();
-                    }
+                    // Insert here a code to update the item in your model
                 }
                 catch (Exception e)
                 {
@@ -181,27 +173,24 @@ namespace DXWebApplication5.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_GridViewPartial", model.ToList());
+            return PartialView("_GridViewPartial", model);
         }
         [HttpPost, ValidateInput(false)]
         public ActionResult GridViewPartialDelete(System.Int32 GID)
         {
-            var model = db1.Grups;
+            var model = new object[0];
             if (GID >= 0)
             {
                 try
                 {
-                    var item = model.FirstOrDefault(it => it.GID == GID);
-                    if (item != null)
-                        model.Remove(item);
-                    db1.SaveChanges();
+                    // Insert here a code to delete the item from your model
                 }
                 catch (Exception e)
                 {
                     ViewData["EditError"] = e.Message;
                 }
             }
-            return PartialView("_GridViewPartial", model.ToList());
+            return PartialView("_GridViewPartial", model);
         }
     }
 }

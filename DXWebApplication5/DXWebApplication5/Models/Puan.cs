@@ -18,6 +18,7 @@ namespace DXWebApplication5.Models
         public int UID { get; set; }
         public int GID { get; set; }
         public int Puan1 { get; set; }
+        public int PID { get; set; }
     
         public virtual Grup Grup { get; set; }
         public virtual Restoran Restoran { get; set; }

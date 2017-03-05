@@ -12,7 +12,7 @@ namespace DXWebApplication5.Controllers
 {
     public class RestoransController : Controller
     {
-        private NeredeYesekDBEntities2 db = new NeredeYesekDBEntities2();
+        private NeredeYesekDBEntities3 db = new NeredeYesekDBEntities3();
 
         // GET: Restorans
         public ActionResult Index()
