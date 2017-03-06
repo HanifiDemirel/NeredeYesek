@@ -8,17 +8,137 @@ using System.Web;
 using System.Web.Mvc;
 using ContosoUniversity.DAL;
 using ContosoUniversity.Models;
+using System.ComponentModel;
+using System.IO;
+using OfficeOpenXml;
 
 namespace ContosoUniversity.Controllers
 {
     public class PointController : Controller
     {
         private ProjectContext db = new ProjectContext();
+        public List<PointWriter> listCreator()
+        {
+            List<PointWriter> list = new List<PointWriter>();
+            foreach (var p in db.Points)
+            {
+                PointWriter pw = new PointWriter();
+                pw.RestaurantName = db.Restaurants.Find(p.RestaurantID).Name;
+                pw.PersonName = db.Persons.Find(p.PersonID).FirstName + " " + db.Persons.Find(p.PersonID).LastName;
+                pw.GivenPoint = p.GivenPoint;
+                list.Add(pw);
+            }
+            return list;
+        }
 
+        public ActionResult importExcel(FormCollection formCollection)
+        {
+            if (Request != null)
+            {
+                HttpPostedFileBase file = Request.Files["UploadedFile"];
+
+                if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                {
+                    string fileName = file.FileName;
+                    string fileContentType = file.ContentType;
+                    byte[] fileBytes = new byte[file.ContentLength];
+                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
+                    Console.Write(data);
+                    using (var package = new ExcelPackage(file.InputStream))
+                    {
+                        var currentSheet = package.Workbook.Worksheets;
+                        var workSheet = currentSheet.First();
+                        var noOfCol = workSheet.Dimension.End.Column;
+                        var noOfRow = workSheet.Dimension.End.Row;
+
+
+                        int rowIterator = 2;
+                        foreach (var point in db.Points)
+                        {
+                                int givenPoint = Convert.ToInt32(workSheet.Cells[rowIterator, 3].Value.ToString());
+                                Point element = point;
+                                
+                                point.GivenPoint = givenPoint;
+                               
+                                rowIterator++;
+                            
+                        }
+                        db.SaveChanges();
+                    }
+                }
+            }
+
+
+
+
+            return RedirectToAction("Index", "Point");
+        }
+
+        public void WriteTsv<T>(IEnumerable<T> data, TextWriter output)
+        {
+            PropertyDescriptorCollection props = TypeDescriptor.GetProperties(typeof(T));
+            foreach (PropertyDescriptor prop in props)
+            {
+                output.Write(prop.DisplayName); // header
+                output.Write("\t");
+            }
+            output.WriteLine();
+            foreach (T item in data)
+            {
+                foreach (PropertyDescriptor prop in props)
+                {
+                    output.Write(prop.Converter.ConvertToString(
+                         prop.GetValue(item)));
+                    output.Write("\t");
+                }
+                output.WriteLine();
+            }
+        }
+        public ActionResult exportExcel()
+        {
+            
+
+            var data = listCreator();
+
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", "attachment;filename=Contact.xls");
+            Response.AddHeader("Content-Type", "application/vnd.ms-excel");
+            Response.ContentEncoding = System.Text.Encoding.GetEncoding("windows-1254");
+            Response.Charset = "windows-1254";
+
+            WriteTsv(data, Response.Output);
+            Response.End();
+            return RedirectToAction("Index", "Point");
+        }
+        public ActionResult createNewPointTable()
+        {
+            foreach(var p in db.Points)
+            {
+                db.Points.Remove(p);
+            }
+            db.SaveChanges();
+            int PointId = 1;
+            foreach(var person in db.Persons)
+            {
+                foreach(var res in db.Restaurants)
+                {
+                    Point point = new Point();
+                    point.ID = PointId;
+                    point.RestaurantID = res.ID;
+                    point.PersonID = person.ID;
+                    point.GivenPoint = 0;
+                    db.Points.Add(point);
+                    PointId++;
+                }
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index", "Point");
+        }
         // GET: Point
         public ActionResult Index()
         {
-            return View(db.Points.ToList());
+            IEnumerable<PointWriter> en = listCreator();
+            return View(en);
         }
 
         // GET: Point/Details/5
