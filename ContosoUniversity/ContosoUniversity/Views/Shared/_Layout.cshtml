@@ -6,6 +6,8 @@
     <title>@ViewBag.Title -Ne Yesek? header</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+
 
 </head>
 <body>
@@ -29,6 +31,7 @@
                     <li>@Html.ActionLink("People", "Index", "Person")</li>
                     <li>@Html.ActionLink("Points", "Index", "Point")</li>
                     <li>@Html.ActionLink("Statistics", "Index", "Statistic")</li>
+                    <li>@Html.ActionLink("Mail", "Index", "Mail")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
