@@ -15,6 +15,46 @@ namespace ContosoUniversity.Controllers
     {
         private ProjectContext db = new ProjectContext();
 
+
+        public ActionResult createStatisticsTable()
+        {
+            foreach (var p in db.Statistics)
+            {
+                db.Statistics.Remove(p);
+            }
+            db.SaveChanges();
+            int PointId = 1;
+            int totalPoint = 0;
+            foreach (var RID in db.Restaurants)
+            {
+                var drafts = db.Points.Where(d => d.RestaurantID == RID.ID).ToList();
+                int point = 0;
+                foreach (var resPoint in drafts)
+                {
+                    point += resPoint.GivenPoint;
+                }
+                totalPoint += point;
+                Statistic statistic = new Statistic();
+                statistic.ID = PointId;
+                statistic.RestaurantID = RID.ID;
+                statistic.GroupID = 1;
+                statistic.DaysLeft = point;
+                statistic.DaysToGo = point;
+                db.Statistics.Add(statistic);
+                PointId++;
+
+            }
+            db.SaveChanges();
+            foreach (var s in db.Statistics)
+            {
+                int exactDay = s.DaysToGo * 20 / totalPoint;
+                s.DaysToGo = exactDay;
+                s.DaysLeft = exactDay;
+               
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index", "Statistic");
+        }
         // GET: Statistic
         public ActionResult Index()
         {
