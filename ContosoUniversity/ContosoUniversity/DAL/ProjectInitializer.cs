@@ -11,20 +11,12 @@ namespace ContosoUniversity.DAL
     {
         protected override void Seed(ProjectContext context)
         {
-            var groups = new List<Group>
-            {
-            new Group{ Name = "Ebisu"},
-            new Group{ Name = "Meredith"},
-            new Group{ Name = "Nino"}
-            };
-            groups.ForEach(g => context.Groups.Add(g));
-            context.SaveChanges();
 
             var persons = new List<Person>
             {
-            new Person{ FirstName = "Hanifi",LastName = "Demirel", Email = "hdemirel16@gmail.com", GroupID = 2},
-            new Person{ FirstName = "Alper",LastName = "Akyıldız", Email = "hdemirel16@gmail.com", GroupID = 3},
-            new Person{ FirstName = "Mustafa",LastName = "Gökçeoğlu", Email = "hdemirel16@gmail.com", GroupID = 1}
+            new Person{ FirstName = "Hanifi",LastName = "Demirel", Email = "hdemirel16@gmail.com" },
+            new Person{ FirstName = "Alper",LastName = "Akyıldız", Email = "hdemirel16@gmail.com" },
+            new Person{ FirstName = "Mustafa",LastName = "Gökçeoğlu", Email = "hdemirel16@gmail.com"}
             };
             persons.ForEach(s => context.Persons.Add(s));
             context.SaveChanges();
@@ -50,9 +42,9 @@ namespace ContosoUniversity.DAL
 
             var statistics = new List<Statistic>
             {
-            new Statistic{GroupID = 1, RestaurantID = 3, DaysToGo = 5, DaysLeft = 8 },
-            new Statistic{GroupID = 2, RestaurantID = 2, DaysToGo = 2, DaysLeft = 3  },
-            new Statistic{GroupID = 3, RestaurantID = 1, DaysToGo = 4, DaysLeft = 6 }
+            new Statistic{ RestaurantID = 3, DaysToGo = 5, DaysLeft = 8 },
+            new Statistic{ RestaurantID = 2, DaysToGo = 2, DaysLeft = 3  },
+            new Statistic{ RestaurantID = 1, DaysToGo = 4, DaysLeft = 6 }
             };
             statistics.ForEach(s => context.Statistics.Add(s));
             context.SaveChanges();
