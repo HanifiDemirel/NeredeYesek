@@ -15,7 +15,6 @@ namespace ContosoUniversity.Controllers
     {
         private ProjectContext db = new ProjectContext();
 
-
         public ActionResult createStatisticsTable()
         {
             foreach (var p in db.Statistics)
@@ -37,12 +36,10 @@ namespace ContosoUniversity.Controllers
                 Statistic statistic = new Statistic();
                 statistic.ID = PointId;
                 statistic.RestaurantID = RID.ID;
-                statistic.GroupID = 1;
                 statistic.DaysLeft = point;
                 statistic.DaysToGo = point;
                 db.Statistics.Add(statistic);
                 PointId++;
-
             }
             db.SaveChanges();
             foreach (var s in db.Statistics)
