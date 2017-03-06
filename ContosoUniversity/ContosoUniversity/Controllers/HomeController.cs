@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ContosoUniversity.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,6 +26,11 @@ namespace ContosoUniversity.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+        public JsonResult GetWeather()
+        {
+            Weather weath = new Weather();
+            return Json(weath.getWeatherForcast(), JsonRequestBehavior.AllowGet);
         }
     }
 }
