@@ -37,12 +37,11 @@
 
 <script>
     $(document).ready(function () {//Wait for all elements(DOM) to load before executing following function
-        $.get("http://api.openweathermap.org/data/2.5/weather?id=745042&APPID=4c4721a19c262f5dc3a45f5e7216bc74&units=metric", function (response) {
+        $.get("@Url.Action("GetWeather","Home")", function (response) {
             $("#name").text("Name: " + response.name);
             $("#humidity").text("Humidity: " + response.main.humidity);
             $("#temp").text("Temperature: " + response.main.temp);
             $("#description").text("Desription: " + response.weather[0].description);
-            console.log(response);
 
         });
     });

@@ -11,8 +11,9 @@ namespace ContosoUniversity.Models
     {
         public Object getWeatherForcast()
         {
-            string url = "http://api.openweathermap.org/data/2.5/weather?q=London&APPID=4c4721a19c262f5dc3a45f5e7216bc74&units=imperial";
+            string url = "http://api.openweathermap.org/data/2.5/weather?id=745042&APPID=4c4721a19c262f5dc3a45f5e7216bc74&units=metric&lang=tr";
             var client = new WebClient();
+            client.Encoding = System.Text.Encoding.UTF8;
             var serializer = new JavaScriptSerializer();
             var content = client.DownloadString(url);
             var jsonContext = serializer.Deserialize<Object>(content);
