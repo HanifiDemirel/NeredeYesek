@@ -24,9 +24,9 @@ namespace ContosoUniversity.Controllers
             db.SaveChanges();
             int PointId = 1;
             int totalPoint = 0;
-            foreach (var RID in db.Restaurants)
+            foreach (var restaurant in db.Restaurants)
             {
-                var drafts = db.Points.Where(d => d.RestaurantID == RID.ID).ToList();
+                var drafts = db.Points.Where(d => d.RestaurantID == restaurant.ID).ToList();
                 int point = 0;
                 foreach (var resPoint in drafts)
                 {
@@ -35,7 +35,7 @@ namespace ContosoUniversity.Controllers
                 totalPoint += point;
                 Statistic statistic = new Statistic();
                 statistic.ID = PointId;
-                statistic.RestaurantID = RID.ID;
+                statistic.RestaurantID = restaurant.ID;
                 statistic.DaysLeft = point;
                 statistic.DaysToGo = point;
                 db.Statistics.Add(statistic);

@@ -21,7 +21,7 @@ namespace ContosoUniversity.Schedulers
                 sched.ScheduleJob(jobMonthly, triggerMonthly);
 
                 IJobDetail jobDaily = JobBuilder.Create<DailyScheduler>().WithIdentity("DailyScheduler", null).Build();
-                ISimpleTrigger triggerDaily = (ISimpleTrigger)TriggerBuilder.Create().WithIdentity("DailyScheduler").StartAt(DateTime.UtcNow).WithSimpleSchedule(x => x.WithIntervalInSeconds(5).WithRepeatCount(10)).Build();
+                ISimpleTrigger triggerDaily = (ISimpleTrigger)TriggerBuilder.Create().WithIdentity("DailyScheduler").StartAt(DateTime.UtcNow).WithSimpleSchedule(x => x.WithIntervalInSeconds(5).RepeatForever()).Build();
                 sched.ScheduleJob(jobDaily, triggerDaily);
             }
             catch (Exception ex)
