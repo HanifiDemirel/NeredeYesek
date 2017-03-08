@@ -239,7 +239,7 @@
     <Compile Include="Models\PointWriter.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\Statistic.cs" />
-    <Compile Include="Models\Weather.cs" />
+    <Compile Include="Models\WeatherContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schedulers\DailyScheduler.cs" />
     <Compile Include="Schedulers\MonthlyScheduler.cs" />
