@@ -1,4 +1,5 @@
-﻿using ContosoUniversity.DAL;
+﻿using ContosoUniversity.Controllers;
+using ContosoUniversity.DAL;
 using ContosoUniversity.Models;
 using Quartz;
 using System;
@@ -13,6 +14,8 @@ namespace ContosoUniversity.Schedulers
         private ProjectContext db = new ProjectContext();
         public void Execute(IJobExecutionContext context)
         {
+            WeatherContext weath = new WeatherContext();
+            HomeController.isSuitableWeather((WeatherRootobject)weath.getWeatherForcast());
             //true yürümeye uygun
             bool weather = false;
             if (LastRestaurants.lastId == 0)
