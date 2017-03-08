@@ -48,11 +48,11 @@ namespace ContosoUniversity.Models
 
     public class Main
     {
-        public int temp { get; set; }
-        public int pressure { get; set; }
+        public float temp { get; set; }
+        public float pressure { get; set; }
         public int humidity { get; set; }
-        public int temp_min { get; set; }
-        public int temp_max { get; set; }
+        public float temp_min { get; set; }
+        public float temp_max { get; set; }
     }
 
     public class Wind
