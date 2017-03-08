@@ -36,7 +36,6 @@ namespace ContosoUniversity.Controllers
             if (Request != null)
             {
                 HttpPostedFileBase file = Request.Files["UploadedFile"];
-
                 if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
                 {
                     string fileName = file.FileName;
@@ -50,27 +49,18 @@ namespace ContosoUniversity.Controllers
                         var workSheet = currentSheet.First();
                         var noOfCol = workSheet.Dimension.End.Column;
                         var noOfRow = workSheet.Dimension.End.Row;
-
-
                         int rowIterator = 2;
                         foreach (var point in db.Points)
                         {
-                                int givenPoint = Convert.ToInt32(workSheet.Cells[rowIterator, 3].Value.ToString());
-                                Point element = point;
-                                
-                                point.GivenPoint = givenPoint;
-                               
-                                rowIterator++;
-                            
+                            int givenPoint = Convert.ToInt32(workSheet.Cells[rowIterator, 3].Value.ToString());
+                            Point element = point;
+                            point.GivenPoint = givenPoint;
+                            rowIterator++;
                         }
                         db.SaveChanges();
                     }
                 }
             }
-
-
-
-
             return RedirectToAction("Index", "Point");
         }
 
@@ -96,16 +86,12 @@ namespace ContosoUniversity.Controllers
         }
         public ActionResult exportExcel()
         {
-            
-
             var data = listCreator();
-
             Response.ClearContent();
             Response.AddHeader("content-disposition", "attachment;filename=Contact.xls");
             Response.AddHeader("Content-Type", "application/vnd.ms-excel");
             Response.ContentEncoding = System.Text.Encoding.GetEncoding("windows-1254");
             Response.Charset = "windows-1254";
-
             WriteTsv(data, Response.Output);
             Response.End();
             return RedirectToAction("Index", "Point");

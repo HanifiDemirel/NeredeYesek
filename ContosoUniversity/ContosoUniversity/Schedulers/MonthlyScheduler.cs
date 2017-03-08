@@ -11,6 +11,8 @@ namespace ContosoUniversity.Schedulers
         private ProjectContext db = new ProjectContext();
         public void Execute(IJobExecutionContext context)
         {
+            LastRestaurants.lastId = 0;
+            LastRestaurants.last2Id = 0;
             foreach (var p in db.Statistics)
             {
                 db.Statistics.Remove(p);
@@ -36,12 +38,12 @@ namespace ContosoUniversity.Schedulers
                 PointId++;
             }
             db.SaveChanges();
+            if (totalPoint == 0) return;
             foreach (var s in db.Statistics)
             {
                 int exactDay = s.DaysToGo * 20 / totalPoint;
                 s.DaysToGo = exactDay;
                 s.DaysLeft = exactDay;
-
             }
             db.SaveChanges();           
         }

@@ -23,9 +23,9 @@ namespace ContosoUniversity.DAL
 
             var restaurants = new List<Restaurant>
             {
-            new Restaurant{ Name="Köfteci Yusuf", TransType="Yaya", WeatherSensitivity = 1 },
-            new Restaurant{ Name="Nusret", TransType="Araba", WeatherSensitivity = 0},
-            new Restaurant{ Name="Aslı Börek", TransType="Yaya", WeatherSensitivity = 1}
+            new Restaurant{ Name="Köfteci Yusuf", TransType=0, WeatherSensitivity = 1 },
+            new Restaurant{ Name="Nusret", TransType=1, WeatherSensitivity = 0},
+            new Restaurant{ Name="Aslı Börek", TransType=0, WeatherSensitivity = 1}
             };
             restaurants.ForEach(s => context.Restaurants.Add(s));
             context.SaveChanges();

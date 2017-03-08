@@ -1,5 +1,4 @@
 ﻿using ContosoUniversity.Models;
-using mailgonder.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +26,8 @@ namespace mailgonder.Controllers
                 body.AppendLine("E-Mail Adresi: " + model.Email);
                 body.AppendLine("Konu: " + model.Subject);
                 body.AppendLine("Mesaj: " + model.Message);
-                Mail.MailSender(body.ToString(), model.Email);
+                Mail mail = new Mail();
+                mail.MailSender(body.ToString(), model.Email);
             }
             return View();
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace mailgonder.Models
+namespace ContosoUniversity.Models
 {
     public class MailContact
     {
