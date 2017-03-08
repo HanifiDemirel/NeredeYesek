@@ -1,4 +1,6 @@
-﻿using Quartz;
+﻿using ContosoUniversity.Controllers;
+using ContosoUniversity.Models;
+using Quartz;
 using System;
 
 
@@ -8,7 +10,9 @@ namespace ContosoUniversity.Schedulers
     {
         public void Execute(IJobExecutionContext context)
         {
-            Console.WriteLine("Y");
+            WeatherContext weath = new WeatherContext();
+            HomeController.isSuitableWeather((WeatherRootobject)weath.getWeatherForcast());
+
         }
     }
 }
