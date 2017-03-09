@@ -8,7 +8,6 @@ using System.Linq;
 
 namespace ContosoUniversity.Schedulers
 {
-
     public class DailyScheduler : IJob
     {
         private ProjectContext db = new ProjectContext();
@@ -18,14 +17,12 @@ namespace ContosoUniversity.Schedulers
             HomeController.isSuitableWeather((WeatherRootobject)weath.getWeatherForcast());
             //true yürümeye uygun
             bool weather = false;
-            if (LastRestaurants.lastId == 0)
-            {
-                LastRestaurants.lastId = 1;
-            }
             int counter = 0;
             Restaurant recommendedrestaurant = new Restaurant();
             Restaurant toGoRestaurant = new Restaurant();
-            foreach (var i in db.Statistics.OrderByDescending(i => i.DaysLeft))
+            List<Statistic> statisticsList = db.Statistics.OrderByDescending(p => p.DaysLeft).ToList();
+            db.SaveChanges();
+            foreach (var i in statisticsList)
             {
                 var restaurant = db.Restaurants.Find(i.RestaurantID);
                 if (counter == 0)
@@ -57,31 +54,35 @@ namespace ContosoUniversity.Schedulers
                         continue;
                     }
                 }
-
+                if(db.Statistics.Single(x => x.RestaurantID == restaurant.ID).DaysLeft == 0)
+                {
+                    continue;
+                }
                 toGoRestaurant = restaurant;
                 break;
             }
             db.SaveChanges();
-            if (toGoRestaurant == null)
+            if (toGoRestaurant.Name == null)
             {
                 toGoRestaurant = recommendedrestaurant;
             }
-
-
-
             LastRestaurants.lastId = recommendedrestaurant.ID;
             LastRestaurants.last2Id = LastRestaurants.lastId;
-
-            var rest = db.Statistics.SingleOrDefault(x => x.RestaurantID == toGoRestaurant.ID);
-
-            int daysLeft = rest.DaysLeft;
-            rest.DaysLeft = daysLeft - 1;
+            
             Mail mail = new Mail();
-            db.SaveChanges();
             foreach (var person in db.Persons)
             {
                 //  mail.MailSender(recommendedRestaurant, person.Email);
             }
+            updateTable(toGoRestaurant);
         }
+
+        public void updateTable(Restaurant restaurant)
+        {
+            db.Statistics.Single(x => x.RestaurantID == restaurant.ID).DaysLeft -= 1;
+            db.SaveChanges();
+
+        }
+
     }
 }

@@ -9,7 +9,6 @@ namespace ContosoUniversity.Models
     {
         public static int lastId { get; set; }
         public static int last2Id { get; set; }
-
     }
     
     
