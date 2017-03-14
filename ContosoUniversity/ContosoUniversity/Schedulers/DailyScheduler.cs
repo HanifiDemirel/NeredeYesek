@@ -14,9 +14,9 @@ namespace ContosoUniversity.Schedulers
         public void Execute(IJobExecutionContext context)
         {
             WeatherContext weath = new WeatherContext();
-            HomeController.isSuitableWeather((WeatherRootobject)weath.getWeatherForcast());
-            //true yürümeye uygun
-            bool weather = false;
+            
+            //true: yürümeye uygun
+            bool weather = HomeController.isWeatherFine((WeatherRootobject)weath.getWeatherForcast()); ;
             int counter = 0;
             Restaurant recommendedrestaurant = new Restaurant();
             Restaurant toGoRestaurant = new Restaurant();

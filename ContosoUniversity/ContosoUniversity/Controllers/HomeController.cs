@@ -32,7 +32,7 @@ namespace ContosoUniversity.Controllers
             WeatherContext weath = new WeatherContext();
             return Json(weath.getWeatherForcast(), JsonRequestBehavior.AllowGet);
         }
-        public static bool isSuitableWeather(WeatherRootobject weather)
+        public static bool isWeatherFine(WeatherRootobject weather)
         {
             string description = weather.weather[0].main;
             if (description.Equals("Thunderstorm"))
