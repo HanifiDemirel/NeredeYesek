@@ -18,24 +18,21 @@ namespace ContosoUniversity.Schedulers
                 db.Statistics.Remove(p);
             }
             db.SaveChanges();
-            int PointId = 1;
             int totalPoint = 0;
-            foreach (var RID in db.Restaurants)
+            foreach (var restaurant in db.Restaurants)
             {
-                var drafts = db.Points.Where(d => d.RestaurantID == RID.ID).ToList();
+                var drafts = db.Points.Where(d => d.RestaurantID == restaurant.ID).ToList();
                 int point = 0;
                 foreach (var resPoint in drafts)
                 {
-                    point += resPoint.GivenPoint;
+                    point += resPoint.GivenPoint; //Restoranın toplam puanı
                 }
                 totalPoint += point;
                 Statistic statistic = new Statistic();
-                statistic.ID = PointId;
-                statistic.RestaurantID = RID.ID;
+                statistic.RestaurantID = restaurant.ID;
                 statistic.DaysLeft = point;
                 statistic.DaysToGo = point;
                 db.Statistics.Add(statistic);
-                PointId++;
             }
             db.SaveChanges();
             if (totalPoint == 0) return;
@@ -45,7 +42,15 @@ namespace ContosoUniversity.Schedulers
                 s.DaysToGo = exactDay;
                 s.DaysLeft = exactDay;
             }
-            db.SaveChanges();           
+            db.SaveChanges();
+            int remaining_days = 20 - db.Statistics.Sum(d => d.DaysToGo); //Kalan günler ilk restorana atılır
+            if (remaining_days != 0)
+            {
+                var stat = db.Statistics.ToArray();
+                stat[0].DaysToGo += remaining_days;
+                stat[0].DaysLeft += remaining_days;
+            }
+            db.SaveChanges();
         }
     }
 }

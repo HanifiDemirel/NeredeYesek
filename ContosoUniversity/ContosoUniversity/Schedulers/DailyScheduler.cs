@@ -66,9 +66,9 @@ namespace ContosoUniversity.Schedulers
             {
                 toGoRestaurant = recommendedrestaurant;
             }
-            LastRestaurants.lastId = recommendedrestaurant.ID;
             LastRestaurants.last2Id = LastRestaurants.lastId;
-            
+            LastRestaurants.lastId = toGoRestaurant.ID;
+
             Mail mail = new Mail();
             foreach (var person in db.Persons)
             {
