@@ -19,15 +19,12 @@ namespace ContosoUniversity.Schedulers
 
                 IJobDetail jobMonthly = JobBuilder.Create<MonthlyScheduler>().WithIdentity("MonthlyScheduler", null).Build();
                 //ISimpleTrigger triggerMonthly = (ISimpleTrigger)TriggerBuilder.Create().WithIdentity("MonthlyScheduler").StartAt(DateTime.Now.AddMonths(2)).WithSimpleSchedule(x => x.WithIntervalInSeconds(100).RepeatForever()).Build();
-                ISimpleTrigger triggerMonthly = (ISimpleTrigger)TriggerBuilder.Create().WithIdentity("MonthlyScheduler").StartAt(DateTime.Now.AddSeconds(10)).WithSimpleSchedule(x => x.WithIntervalInSeconds(200).RepeatForever()).Build();
-
+                ISimpleTrigger triggerMonthly = (ISimpleTrigger)TriggerBuilder.Create().WithIdentity("MonthlyScheduler").WithSchedule(CronScheduleBuilder.MonthlyOnDayAndHourAndMinute(1, 1, 0)).Build();
                 sched.ScheduleJob(jobMonthly, triggerMonthly);
 
 
-
-
                 IJobDetail jobDaily = JobBuilder.Create<DailyScheduler>().WithIdentity("DailyScheduler", null).Build();
-                ISimpleTrigger triggerDaily = (ISimpleTrigger)TriggerBuilder.Create().WithIdentity("DailyScheduler").StartAt(DateTime.Now.AddSeconds(500)).WithSimpleSchedule(x => x.WithIntervalInSeconds(3).RepeatForever()).Build();
+                ISimpleTrigger triggerDaily = (ISimpleTrigger)TriggerBuilder.Create().WithIdentity("DailyScheduler").WithCronSchedule("0 0 11 1,2,3,4,5,8,9,10,11,12,15,16,17,18,19,22,23,24,25,26,27 * ?").Build();
                 sched.ScheduleJob(jobDaily, triggerDaily);
             }
             catch (Exception ex)
