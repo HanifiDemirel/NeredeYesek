@@ -67,3 +67,61 @@
         </tr>
     }
 </table>
+=======
+
+    <input type="button" value="Create New Table" onclick="location.href='@Url.Action("createNewPointTable","Point")'" />
+    <br/><br />
+    <input type="button" value="Export Excel File" onclick="location.href='@Url.Action("exportExcel","Point")'" />
+    <br /><br />
+
+
+@using (Html.BeginForm("importExcel", "Point", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table>
+        <tr>
+            <td>File:</td>
+            <td>
+                <input type="file" name="UploadedFile" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" name="Submit" value="Submit" />
+            </td>
+        </tr>
+    </table>
+}
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+               Person Name
+            </th>
+            <th>
+                Restaurant Name
+            </th>
+            <th>
+                Given Point
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RestaurantName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GivenPoint)
+                </td>
+               
+            </tr>
+        }
+
+    </table>
