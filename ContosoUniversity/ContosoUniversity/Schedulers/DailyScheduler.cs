@@ -34,7 +34,7 @@ namespace ContosoUniversity.Schedulers
                 {
                     continue;
                 }
-                if (weather == false && restaurant.WeatherSensitivity == 1 && restaurant.TransType == 0)
+                if (weather == false && restaurant.WeatherSensitivity == WeatherSens.Susceptible && restaurant.TransType == TransType.OnFoot)
                 {
                     continue;
                 }
@@ -42,14 +42,14 @@ namespace ContosoUniversity.Schedulers
                 var last2Restaurant = db.Restaurants.Find(LastRestaurants.last2Id);
                 if (last2Restaurant == null && lastRestaurant != null)
                 {
-                    if (lastRestaurant.TransType == 1 && restaurant.TransType == 1)
+                    if (lastRestaurant.TransType == TransType.OnFoot && restaurant.TransType == TransType.ByCar)
                     {
                         continue;
                     }
                 }
                 if (last2Restaurant != null && lastRestaurant != null)
                 {
-                    if ((lastRestaurant.TransType == 1 || last2Restaurant.TransType == 1) && restaurant.TransType == 1)
+                    if ((lastRestaurant.TransType == TransType.OnFoot || last2Restaurant.TransType == TransType.OnFoot) && restaurant.TransType == TransType.OnFoot)
                     {
                         continue;
                     }
