@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title -Ne Yesek? header</title>
+    <title>@ViewBag.Title -Nerede Yesek?</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <script src="~/Scripts/jquery-3.1.1.js"></script>
@@ -19,18 +19,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Ne Yesek", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Nerede Yesek?", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse"> 
-                <ul class="nav navbar-nav"> 
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>  
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Restaurants", "Index", "Restaurant")</li>
                     <li>@Html.ActionLink("People", "Index", "Person")</li>
                     <li>@Html.ActionLink("Points", "Index", "Point")</li>
                     <li>@Html.ActionLink("Statistics", "Index", "Statistic")</li>
-                    <li>@Html.ActionLink("Mail", "Index", "Mail")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -40,7 +39,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year -Ne Yesek? footer</p>
+            <p>&copy; @DateTime.Now.Year -Nerede Yesek?</p>
         </footer>
     </div>
 

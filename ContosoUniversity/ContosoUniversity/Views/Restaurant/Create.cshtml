@@ -23,19 +23,46 @@
             </div>
         </div>
 
+        @{
+            List<SelectListItem> TransTypeListItems = new List<SelectListItem>();
+            TransTypeListItems.Add(new SelectListItem
+            {
+                Text = "OnFoot",
+                Value = "1",
+                Selected = true
+            });
+            TransTypeListItems.Add(new SelectListItem
+            {
+                Text = "ByCar",
+                Value = "2",
+            });
+
+            List<SelectListItem> WeatherSensListItems = new List<SelectListItem>();
+            WeatherSensListItems.Add(new SelectListItem
+            {
+                Text = "Susceptible",
+                Value = "1",
+                Selected = true
+            });
+            WeatherSensListItems.Add(new SelectListItem
+            {
+                Text = "NonSusceptible",
+                Value = "2",
+            });
+
+        }
+
         <div class="form-group">
             @Html.LabelFor(model => model.TransType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TransType, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TransType, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model=> model.TransType, TransTypeListItems)
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.WeatherSensitivity, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.WeatherSensitivity, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.WeatherSensitivity, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.WeatherSensitivity, WeatherSensListItems)
             </div>
         </div>
 
