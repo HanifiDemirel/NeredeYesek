@@ -12,6 +12,7 @@ namespace ContosoUniversity.DAL
         {
         }
 
+        public DbSet<Group> Groups { get; set; }
         public DbSet<Person> Persons { get; set; }
         public DbSet<Point> Points { get; set; }
         public DbSet<Restaurant> Restaurants{ get; set; }

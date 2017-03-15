@@ -5,11 +5,11 @@ using System.Net;
 using System.Net.Mail;
 using System.Web;
 
-namespace ContosoUniversity.Models
+namespace mailgonder.Models
 {
     public class Mail
     {
-        public void MailSender(string body, string tomail)
+        public static void MailSender(string body, string tomail)
         {
             var fromAddress = new MailAddress("afiyetolsun.neredeyesek@gmail.com");
             //var toAddress = new MailAddress("mustafa.gokceoglu14@gmail.com");

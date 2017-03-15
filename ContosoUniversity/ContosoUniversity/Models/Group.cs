@@ -5,12 +5,11 @@ using System.Web;
 
 namespace ContosoUniversity.Models
 {
-    public class Restaurant
+    public class Group
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public string TransType { get; set; }
-        public int WeatherSensitivity { get; set; }
+        public virtual ICollection<Person> Members { get; set; }
 
 
     }

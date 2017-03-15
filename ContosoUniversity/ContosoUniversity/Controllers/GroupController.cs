@@ -11,107 +11,107 @@ using ContosoUniversity.Models;
 
 namespace ContosoUniversity.Controllers
 {
-    public class StatisticController : Controller
+    public class GroupController : Controller
     {
         private ProjectContext db = new ProjectContext();
 
-        // GET: Statistic
+        // GET: Group
         public ActionResult Index()
         {
-            return View(db.Statistics.ToList());
+            return View(db.Groups.ToList());
         }
 
-        // GET: Statistic/Details/5
+        // GET: Group/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Statistic statistic = db.Statistics.Find(id);
-            if (statistic == null)
+            Group group = db.Groups.Find(id);
+            if (group == null)
             {
                 return HttpNotFound();
             }
-            return View(statistic);
+            return View(group);
         }
 
-        // GET: Statistic/Create
+        // GET: Group/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Statistic/Create
+        // POST: Group/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,GroupID,RestaurantID,DaysToGo,DaysLeft")] Statistic statistic)
+        public ActionResult Create([Bind(Include = "ID,Name")] Group group)
         {
             if (ModelState.IsValid)
             {
-                db.Statistics.Add(statistic);
+                db.Groups.Add(group);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(statistic);
+            return View(group);
         }
 
-        // GET: Statistic/Edit/5
+        // GET: Group/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Statistic statistic = db.Statistics.Find(id);
-            if (statistic == null)
+            Group group = db.Groups.Find(id);
+            if (group == null)
             {
                 return HttpNotFound();
             }
-            return View(statistic);
+            return View(group);
         }
 
-        // POST: Statistic/Edit/5
+        // POST: Group/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,GroupID,RestaurantID,DaysToGo,DaysLeft")] Statistic statistic)
+        public ActionResult Edit([Bind(Include = "ID,Name")] Group group)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(statistic).State = EntityState.Modified;
+                db.Entry(group).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(statistic);
+            return View(group);
         }
 
-        // GET: Statistic/Delete/5
+        // GET: Group/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Statistic statistic = db.Statistics.Find(id);
-            if (statistic == null)
+            Group group = db.Groups.Find(id);
+            if (group == null)
             {
                 return HttpNotFound();
             }
-            return View(statistic);
+            return View(group);
         }
 
-        // POST: Statistic/Delete/5
+        // POST: Group/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Statistic statistic = db.Statistics.Find(id);
-            db.Statistics.Remove(statistic);
+            Group group = db.Groups.Find(id);
+            db.Groups.Remove(group);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

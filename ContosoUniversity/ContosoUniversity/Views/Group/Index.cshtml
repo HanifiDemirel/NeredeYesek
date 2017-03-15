@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ContosoUniversity.Models.Restaurant>
+﻿@model IEnumerable<ContosoUniversity.Models.Group>
 
 @{
     ViewBag.Title = "Index";
@@ -14,12 +14,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TransType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WeatherSensitivity)
-        </th>
         <th></th>
     </tr>
 
@@ -27,12 +21,6 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TransType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WeatherSensitivity)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
