@@ -1,20 +1,11 @@
 ﻿@model IEnumerable<ContosoUniversity.Models.Statistic>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Statistics";
 }
 
-<h2>Index</h2>
+<h2>Statistics</h2>
 
-
-
-<input type="button" value="Aybasi tablosu olustur" onclick="location.href='@Url.Action("createStatisticsTable","Statistic")'" />
-<br /><br />
-
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>

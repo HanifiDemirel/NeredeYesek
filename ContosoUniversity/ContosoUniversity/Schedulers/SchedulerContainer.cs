@@ -19,7 +19,7 @@ namespace ContosoUniversity.Schedulers
 
                 IJobDetail jobMonthly = JobBuilder.Create<MonthlyScheduler>().WithIdentity("MonthlyScheduler", null).Build();
                 //ISimpleTrigger triggerMonthly = (ISimpleTrigger)TriggerBuilder.Create().WithIdentity("MonthlyScheduler").StartAt(DateTime.Now.AddMonths(2)).WithSimpleSchedule(x => x.WithIntervalInSeconds(100).RepeatForever()).Build();
-                ISimpleTrigger triggerMonthly = (ISimpleTrigger)TriggerBuilder.Create().WithIdentity("MonthlyScheduler").StartAt(DateTime.Now.AddSeconds(300)).WithSimpleSchedule(x => x.WithIntervalInSeconds(200).RepeatForever()).Build();
+                ISimpleTrigger triggerMonthly = (ISimpleTrigger)TriggerBuilder.Create().WithIdentity("MonthlyScheduler").StartAt(DateTime.Now.AddSeconds(10)).WithSimpleSchedule(x => x.WithIntervalInSeconds(200).RepeatForever()).Build();
 
                 sched.ScheduleJob(jobMonthly, triggerMonthly);
 
