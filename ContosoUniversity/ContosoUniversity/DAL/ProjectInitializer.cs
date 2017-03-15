@@ -7,7 +7,7 @@ using ContosoUniversity.Models;
 
 namespace ContosoUniversity.DAL
 {
-    public class ProjectInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<ProjectContext>
+    public class ProjectInitializer : System.Data.Entity.DropCreateDatabaseAlways<ProjectContext>
     {
         protected override void Seed(ProjectContext context)
         {
@@ -15,8 +15,8 @@ namespace ContosoUniversity.DAL
             var persons = new List<Person>
             {
             new Person{ FirstName = "Hanifi",LastName = "Demirel", Email = "hdemirel16@gmail.com" },
-            new Person{ FirstName = "Alper",LastName = "Akyıldız", Email = "hdemirel16@gmail.com" },
-            new Person{ FirstName = "Mustafa",LastName = "Gökçeoğlu", Email = "hdemirel16@gmail.com"}
+            new Person{ FirstName = "Alper",LastName = "Akyıldız", Email = "alperakyldz@gmail.com" },
+            new Person{ FirstName = "Mustafa",LastName = "Gökçeoğlu", Email = "mustafa.gokceoglu14@gmail.com"}
             };
             persons.ForEach(s => context.Persons.Add(s));
             context.SaveChanges();
