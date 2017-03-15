@@ -36,6 +36,32 @@ namespace ContosoUniversity.Controllers
             if (Request != null)
             {
                 HttpPostedFileBase file = Request.Files["UploadedFile"];
+                if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                {
+                    string fileName = file.FileName;
+                    string fileContentType = file.ContentType;
+                    byte[] fileBytes = new byte[file.ContentLength];
+                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
+                    Console.Write(data);
+                    using (var package = new ExcelPackage(file.InputStream))
+                    {
+                        var currentSheet = package.Workbook.Worksheets;
+                        var workSheet = currentSheet.First();
+                        var noOfCol = workSheet.Dimension.End.Column;
+                        var noOfRow = workSheet.Dimension.End.Row;
+                        int rowIterator = 2;
+                        foreach (var point in db.Points)
+                        {
+                            int givenPoint = Convert.ToInt32(workSheet.Cells[rowIterator, 3].Value.ToString());
+                            Point element = point;
+                            point.GivenPoint = givenPoint;
+                            rowIterator++;
+
+        public ActionResult importExcel(FormCollection formCollection)
+        {
+            if (Request != null)
+            {
+                HttpPostedFileBase file = Request.Files["UploadedFile"];
 
                 if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
                 {
@@ -96,6 +122,7 @@ namespace ContosoUniversity.Controllers
         }
         public ActionResult exportExcel()
         {
+            var data = listCreator();
             
 
             var data = listCreator();

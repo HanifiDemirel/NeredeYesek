@@ -27,10 +27,39 @@ namespace ContosoUniversity.Controllers
 
             return View();
         }
-        public JsonResult GetWeather()
+        public  JsonResult GetWeather()
         {
-            Weather weath = new Weather();
+            WeatherContext weath = new WeatherContext();
             return Json(weath.getWeatherForcast(), JsonRequestBehavior.AllowGet);
+        }
+        public static bool isWeatherFine(WeatherRootobject weather)
+        {
+            string description = weather.weather[0].main;
+            if (description.Equals("Thunderstorm"))
+            {
+                return false;
+            }
+            else if (description.Equals("Drizzle")){
+                return false;
+            }
+            else if (description.Equals("Rain")){
+                return false;
+            }
+            else if (description.Equals("Snow")){
+                return false;
+            }
+            else if (description.Equals("Atmosphere")){
+                return false;
+            }
+            else if (description.Equals("Extreme")){
+                return false;
+            }
+            else if (description.Equals("Additional")){
+                return false;
+            }
+            else
+                return true;
+
         }
     }
 }

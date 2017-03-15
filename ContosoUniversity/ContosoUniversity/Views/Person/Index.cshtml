@@ -1,19 +1,13 @@
 ﻿@model IEnumerable<ContosoUniversity.Models.Person>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "People";
 }
 
-<h2>Index</h2>
+<h2>Person List</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.GroupID)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
         </th>
@@ -28,9 +22,6 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.GroupID)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.FirstName)
         </td>
@@ -47,5 +38,6 @@
         </td>
     </tr>
 }
-
 </table>
+
+<p>@Html.ActionLink("Create New", "Create")</p>

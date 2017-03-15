@@ -1,21 +1,15 @@
 ﻿@model IEnumerable<ContosoUniversity.Models.Statistic>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Statistics";
 }
 
-<h2>Index</h2>
+<h2>Statistics</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.GroupID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RestaurantID)
+            @Html.DisplayNameFor(model => model.restaurant.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DaysToGo)
@@ -29,10 +23,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.GroupID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RestaurantID)
+            @Html.DisplayFor(modelItem => item.restaurant.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DaysToGo)
