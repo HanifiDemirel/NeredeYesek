@@ -1,5 +1,4 @@
-﻿using ContosoUniversity.Schedulers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,9 +16,6 @@ namespace ContosoUniversity
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            //Scheduler
-            SchedulerContainer scheduler = new SchedulerContainer();
-            scheduler.RunJob();
         }
     }
 }
