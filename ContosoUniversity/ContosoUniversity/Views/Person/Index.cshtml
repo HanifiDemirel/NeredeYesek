@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<ContosoUniversity.Models.Person>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "People";
 }
 
-<h2>Index</h2>
+<h2>Person List</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -41,5 +38,6 @@
         </td>
     </tr>
 }
-
 </table>
+
+<p>@Html.ActionLink("Create New", "Create")</p>

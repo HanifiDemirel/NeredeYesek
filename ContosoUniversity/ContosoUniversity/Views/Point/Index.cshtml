@@ -1,37 +1,43 @@
 ﻿@model IEnumerable<ContosoUniversity.Models.PointWriter>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Points";
 }
 
-<h2>Index</h2>
+<h2>Point List</h2>
 
+<div class="row">
+    <div class="col-md-4">
+        <h2>Create New Table</h2>
+        <input type="button" value="Create table" onclick="location.href='@Url.Action("createNewPointTable","Point")'" />
+    </div>
 
-<input type="button" value="Create New Table" onclick="location.href='@Url.Action("createNewPointTable","Point")'" />
-<br /><br />
-<input type="button" value="Export Excel File" onclick="location.href='@Url.Action("exportExcel","Point")'" />
-<br /><br />
+    <div class="col-md-4">
+        <h2>Export as Excel File</h2>
+        <input type="button" value="Download" onclick="location.href='@Url.Action("exportExcel","Point")'" />
+    </div>
 
+    <div class="col-md-4">
+        <h2>Import Points</h2>
+        @using (Html.BeginForm("importExcel", "Point", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <table>
+                <tr>
+                    <td>File:</td>
+                    <td>
+                        <input type="file" name="UploadedFile" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" name="Submit" value="Upload" />
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+</div>
 
-@using (Html.BeginForm("importExcel", "Point", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <table>
-        <tr>
-            <td>File:</td>
-            <td>
-                <input type="file" name="UploadedFile" />
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="submit" name="Submit" value="Submit" />
-            </td>
-        </tr>
-    </table>
-}
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -58,8 +64,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.GivenPoint)
             </td>
-
         </tr>
     }
-
 </table>
